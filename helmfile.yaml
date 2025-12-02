@@ -1,5 +1,7 @@
+# NOTE! Recursive glob (**) is not supported :(
 helmfiles:
-  - "**/helmfile.yaml"
+  - "*/helmfile.yaml"
+  - "*/*/helmfile.yaml"
 
 commonLabels:
   managed-by: helmfile
