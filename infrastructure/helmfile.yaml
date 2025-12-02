@@ -1,0 +1,11 @@
+releases:
+  - name: cert-manager
+    chart: oci://quay.io/jetstack/charts/cert-manager
+    version: v1.19.1
+    namespace: cert-manager
+    values:
+      - ./cert-manager/cert-manager/values.yaml
+    wait: true
+
+  - name: cluster-issuer
+    chart: ./cluster-issuer
