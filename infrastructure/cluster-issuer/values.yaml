@@ -4,12 +4,12 @@ email: just1ngray@outlook.com
 #   - not (practically) rate limited
 #   - self-signed, so it warns of security issue
 #   - https://letsencrypt.org/docs/staging-environment/
-server: https://acme-staging-v02.api.letsencrypt.org/directory
+# server: https://acme-staging-v02.api.letsencrypt.org/directory
 # production:
 #   - rate limited
 #   - proper certificate
 #   - https://letsencrypt.org/docs/acme-protocol-updates/#acme-v2-rfc-8555
-# server: https://acme-v02.api.letsencrypt.org/directory
+server: https://acme-v02.api.letsencrypt.org/directory
 
 # https://letsencrypt.org/docs/profiles/
 profile: tlsserver
