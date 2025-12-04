@@ -9,3 +9,6 @@ releases:
 
   - name: cluster-issuer
     chart: ./cluster-issuer
+
+  - name: traefik-config
+    chart: ./traefik-config
