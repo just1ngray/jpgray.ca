@@ -1,3 +1,6 @@
+helmfiles:
+  - "*/helmfile.yaml"
+
 releases:
   - name: whoami
     namespace: whoami

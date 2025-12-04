@@ -1,3 +1,6 @@
+helmfiles:
+  - "*/helmfile.yaml"
+
 releases:
   - name: cert-manager
     chart: oci://quay.io/jetstack/charts/cert-manager
