@@ -30,8 +30,6 @@ releases:
     namespace: monitoring
     values:
       - ./k8s-monitoring/values.yaml
-    # needs:
-    #   - alloy-crd
     hooks:
       - events: ["presync"]
         showlogs: true
