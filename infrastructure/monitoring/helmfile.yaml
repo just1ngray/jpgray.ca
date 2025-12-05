@@ -10,12 +10,13 @@ releases:
     values:
       - ./loki/values.yaml
 
-  # - name: grafana
-  #   chart: grafana/grafana
-  #   version: 10.3.0
-  #   namespace: monitoring
-  #   values:
-  #     - ./grafana/values.yaml
+  # To get the 'admin' password, run: $ kubectl get secret --namespace monitoring grafana -o jsonpath="{.data.admin-password}" | base64 --decode ; echo
+  - name: grafana
+    chart: grafana/grafana
+    version: 10.3.0
+    namespace: monitoring
+    values:
+      - ./grafana/values.yaml
 
   # - name: k8s-monitoring
   #   chart: grafana/k8s-monitoring
