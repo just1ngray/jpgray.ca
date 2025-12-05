@@ -2,6 +2,12 @@ repositories:
   - name: grafana
     url: https://grafana.github.io/helm-charts
 
+# i don't know what the heck this black magic is, but for some reason without this
+# `helmfile apply` fails on the `helm diff` step when validting that the alloy crd
+# is present
+apiVersions:
+  - collectors.grafana.com/v1alpha1/Alloy
+
 releases:
   - name: loki
     chart: grafana/loki
@@ -18,13 +24,20 @@ releases:
     values:
       - ./grafana/values.yaml
 
-  # - name: k8s-monitoring
-  #   chart: grafana/k8s-monitoring
-  #   version: 3.6.2
-  #   namespace: monitoring
-  #   values:
-  #     - ./k8s-monitoring/values.yaml
-  # - name: alloy-operator
-  #   chart: grafana/alloy-operator
-  #   version: 0.3.14
-  #   namespace: monitoring
+  - name: k8s-monitoring
+    chart: grafana/k8s-monitoring
+    version: 3.6.2
+    namespace: monitoring
+    values:
+      - ./k8s-monitoring/values.yaml
+    # needs:
+    #   - alloy-crd
+    hooks:
+      - events: ["presync"]
+        showlogs: true
+        command: "kubectl"
+        args:
+          - "apply"
+          - "--server-side"
+          - "-f"
+          - "https://github.com/grafana/alloy-operator/releases/download/alloy-operator-0.3.14/collectors.grafana.com_alloy.yaml"
