@@ -33,6 +33,16 @@ loki:
   # disable multi-tenancy and store all logs under the same org id
   auth_enabled: false
 
+# my 'lil VPS doesn't have a ton of memory like on a beefy logs server
+chunksCache:
+  resources:
+    requests:
+      cpu: 10m
+      memory: 32Mi
+    limits:
+      cpu: 50m
+      memory: 64Mi
+
 minio:
   enabled: true
 
