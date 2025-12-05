@@ -1,1 +1,29 @@
-releases: []
+repositories:
+  - name: grafana
+    url: https://grafana.github.io/helm-charts
+
+releases:
+  - name: loki
+    chart: grafana/loki
+    version: 6.44.0
+    namespace: monitoring
+    values:
+      - ./loki/values.yaml
+
+  # - name: grafana
+  #   chart: grafana/grafana
+  #   version: 10.3.0
+  #   namespace: monitoring
+  #   values:
+  #     - ./grafana/values.yaml
+
+  # - name: k8s-monitoring
+  #   chart: grafana/k8s-monitoring
+  #   version: 3.6.2
+  #   namespace: monitoring
+  #   values:
+  #     - ./k8s-monitoring/values.yaml
+  # - name: alloy-operator
+  #   chart: grafana/alloy-operator
+  #   version: 0.3.14
+  #   namespace: monitoring
