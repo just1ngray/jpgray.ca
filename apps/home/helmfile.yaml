@@ -1,0 +1,7 @@
+releases:
+  - name: home
+    namespace: home
+    chart: ./home
+    set:
+      - name: html.index
+        file: resource/html/index.html
