@@ -1,9 +1,9 @@
 # jpgray.ca
 
-I have a domain and a VPS for playing around and hosting various public services.
+I have a domain and a VPS for playing around and hosting various public services. This repository saves the
+setup of the infrastructure and apps that I configure. You can expect noisy commits direct to master branch.
 
-Domain hosted with Namecheap - `jpgray.ca`.
-VPS hosted with OVHCloud.
+Domain hosted with Namecheap (`jpgray.ca`). VPS hosted with OVHCloud.
 
 ## Manual Setup
 
