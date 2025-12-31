@@ -34,6 +34,51 @@
 
       <hr class="my-2" />
 
+      <div>
+        <h2 class="text-lg">## 📌 GitHub Pins</h2>
+        <div id="github-pins" class="grid grid-cols-2 gap-1">Loading...</div>
+        <div class="text-center">
+          🔗 <a class="underline" href="https://github.com/just1ngray?tab=repositories">See more</a>
+        </div>
+      </div>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.0.6/purify.min.js"></script>
+      <script>
+        async function getPins() {
+          // could deploy this to jpgray.ca if it presents any reliability issues
+          const res = await fetch("https://pinned.berrysauce.dev/get/just1ngray");
+          const data = await res.json();
+          return data;
+        }
+
+        function pin2html(pin) {
+          return `
+            <a
+              class="p-2 rounded hover:bg-white/10 duration-200 cursor-pointer"
+              href="https://github.com/${pin.author}/${pin.name}"
+            >
+              <div class="flex flex-row items-center gap-2">
+                <div>${pin.name}</div>
+                <div class="text-xs border rounded-lg p-0.5" style="color: ${pin.languageColor};">${pin.language}</div>
+              </div>
+              <div class="opacity-66">
+                ${pin.description}
+              </div>
+            </a>
+          `;
+        }
+
+        async function hydrate() {
+          const pins = await getPins();
+          const html = pins.map(pin2html).join("\n");
+          const cleanHtml = DOMPurify.sanitize(html);
+          document.getElementById("github-pins").innerHTML = cleanHtml;
+        }
+
+        hydrate();
+      </script>
+
+      <hr class="my-2" />
+
       <!-- links -->
       <div class="flex justify-evenly">
         <a href="https://github.com/just1ngray"
