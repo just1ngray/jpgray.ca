@@ -3,7 +3,8 @@
 I have a domain and a VPS for playing around and hosting various public services. This repository saves the
 setup of the infrastructure and apps that I configure. You can expect noisy commits direct to master branch.
 
-Domain hosted with Namecheap (`jpgray.ca`). VPS hosted with OVHCloud.
+Domain hosted with Namecheap (`jpgray.ca`). VPS hosted with Ionos (note that the firewall should be disabled in the 
+Ionos Control Panel).
 
 ## Manual Setup
 
@@ -15,8 +16,8 @@ All traffic should route from the domain to the VPS. Created the following recor
 
 | Record    | Host | Value          | Options
 | --------- | ---- | -------------- | -------
-| A Record  | @    | 158.69.195.125 | TTL 30-min
-| A Record  | *    | 158.69.195.125 | TTL 30-min
+| A Record  | @    | 67.217.243.137 | TTL 30-min
+| A Record  | *    | 67.217.243.137 | TTL 30-min
 | MX Record | @    | jpgray.ca.     | TTL 5-min, priority 10
 | MX Record | *    | jpgray.ca.     | TTL 5-min, priority 10
 
