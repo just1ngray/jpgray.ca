@@ -1,1 +1,1 @@
-// e.g., CRDs
+export * from "./traefik-config";
