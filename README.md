@@ -98,6 +98,19 @@ kubectl get nodes
 
 ## Deploying
 
-Uses [helmfile](https://github.com/helmfile/helmfile) to deploy to the cluster. Just run `helmfile apply`
+Uses [pulumi](https://www.pulumi.com/) to deploy and manage the state of the cluster. 
 
-TODO: implement some kind of script to clean up kubernetes components that are not core kube nor managed by helmfile.
+### Installation and configuration of dependencies
+
+[Pulumi](https://www.pulumi.com/docs/get-started/download-install/) 
+| [kubectl](https://kubernetes.io/docs/tasks/tools/)
+| [NodeJS](https://nodejs.org/en/download)
+
+Pulumi uses the same access as `kubectl`. Configure kubectl appropriately (as mentioned above in section 
+[## Kubectl remotely](## Kubectl remotely)).
+
+### Updating
+
+pulumi up
+
+then what?
