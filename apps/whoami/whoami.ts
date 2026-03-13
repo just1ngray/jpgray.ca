@@ -1,5 +1,8 @@
 import * as k8s from "@pulumi/kubernetes";
+
 import { ns } from "./namespace";
+import { cluster_issuer } from "../../cluster";
+
 
 export const labels = { app: "whoami" };
 
@@ -33,7 +36,10 @@ export const ingress = new k8s.networking.v1.Ingress("whoami", {
     metadata: {
         name: "whoami",
         namespace: ns.metadata.name,
-        annotations: { "kubernetes.io/ingress.class": "traefik" },
+        annotations: {
+            "kubernetes.io/ingress.class": "traefik",
+            "cert-manager.io/cluster-issuer": cluster_issuer.metadata.name,
+        },
     },
     spec: {
         rules: [{
@@ -48,5 +54,9 @@ export const ingress = new k8s.networking.v1.Ingress("whoami", {
                 }],
             },
         }],
+        tls: [{
+            hosts: ["whoami.new.jpgray.ca"],
+            secretName: "whoami-tls",
+        }]
     },
 }, { dependsOn: service });
