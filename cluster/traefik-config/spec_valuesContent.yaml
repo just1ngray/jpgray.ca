@@ -1,11 +1,11 @@
-# ports:
-#   web:
-#     # auto-upgrade http to https for all ingress
-#     redirections:
-#       entryPoint:
-#         to: websecure
-#         scheme: https
-#         permanent: true
+ports:
+  web:
+    # auto-upgrade http to https for all ingress
+    redirections:
+      entryPoint:
+        to: websecure
+        scheme: https
+        permanent: true
 service:
   spec:
     # preserve the real client IP address in headers
