@@ -1,2 +1,2 @@
-export * from "./whoami";
-export * from "./home";
+export { whoami } from "./whoami";
+export { home } from "./home";
