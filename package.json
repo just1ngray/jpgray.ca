@@ -1,12 +1,17 @@
 {
-    "name": "jpgray",
-    "main": "index.ts",
-    "devDependencies": {
-        "@types/node": "^18",
-        "typescript": "^5.0.0"
-    },
-    "dependencies": {
-        "@pulumi/kubernetes": "^4.0.0",
-        "@pulumi/pulumi": "^3.113.0"
-    }
+  "name": "jpgray",
+  "main": "index.ts",
+  "scripts": {
+    "test": "node --test --import tsx '**/*.test.ts'"
+  },
+  "devDependencies": {
+    "@types/node": "^18",
+    "tsx": "^4.21.0",
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "@pulumi/kubernetes": "^4.0.0",
+    "@pulumi/pulumi": "^3.113.0",
+    "glob": "^13.0.6"
+  }
 }
