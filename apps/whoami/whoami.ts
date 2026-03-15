@@ -1,13 +1,13 @@
 import * as k8s from "@pulumi/kubernetes";
 
-import { ns } from "./namespace";
+import { whoami_namespace } from "./namespace";
 import { cluster_issuer } from "../../cluster";
 
 
 export const labels = { app: "whoami" };
 
 export const deployment = new k8s.apps.v1.Deployment("whoami", {
-    metadata: { name: "whoami", namespace: ns.metadata.name },
+    metadata: { name: "whoami", namespace: whoami_namespace.metadata.name },
     spec: {
         replicas: 1,
         selector: { matchLabels: labels },
@@ -22,10 +22,10 @@ export const deployment = new k8s.apps.v1.Deployment("whoami", {
             },
         },
     },
-}, { dependsOn: ns });
+}, { dependsOn: whoami_namespace });
 
 export const service = new k8s.core.v1.Service("whoami", {
-    metadata: { name: "whoami", namespace: ns.metadata.name },
+    metadata: { name: "whoami", namespace: whoami_namespace.metadata.name },
     spec: {
         selector: labels,
         ports: [{ port: 80, targetPort: 80 }],
@@ -35,7 +35,7 @@ export const service = new k8s.core.v1.Service("whoami", {
 export const ingress = new k8s.networking.v1.Ingress("whoami", {
     metadata: {
         name: "whoami",
-        namespace: ns.metadata.name,
+        namespace: whoami_namespace.metadata.name,
         annotations: {
             "kubernetes.io/ingress.class": "traefik",
             "cert-manager.io/cluster-issuer": cluster_issuer.metadata.name,
