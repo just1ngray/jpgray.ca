@@ -1,7 +1,7 @@
 import * as k8s from "@pulumi/kubernetes";
 
 import { ns } from "./namespace";
-import { cluster_issuer } from "../../cluster";
+import { getDomain, cluster_issuer } from "../../cluster";
 
 
 export const labels = { app: "whoami" };
@@ -43,7 +43,7 @@ export const ingress = new k8s.networking.v1.Ingress("whoami", {
     },
     spec: {
         rules: [{
-            host: "whoami.new.jpgray.ca",
+            host: getDomain("whoami"),
             http: {
                 paths: [{
                     path: "/",
@@ -55,7 +55,7 @@ export const ingress = new k8s.networking.v1.Ingress("whoami", {
             },
         }],
         tls: [{
-            hosts: ["whoami.new.jpgray.ca"],
+            hosts: [getDomain("whoami")],
             secretName: "whoami-tls",
         }]
     },

@@ -3,8 +3,10 @@ import * as k8s from "@pulumi/kubernetes";
 import { ns } from "./namespace";
 import { name } from "./deployment";
 import { service } from "./service";
-import { cluster_issuer } from "../../cluster";
+import { getDomain, cluster_issuer } from "../../cluster";
 
+
+const url = getDomain("");
 
 export const ingress = new k8s.networking.v1.Ingress(name, {
     metadata: {
@@ -17,7 +19,7 @@ export const ingress = new k8s.networking.v1.Ingress(name, {
     },
     spec: {
         rules: [{
-            host: "new.jpgray.ca",
+            host: url,
             http: {
                 paths: [{
                     path: "/",
@@ -29,7 +31,7 @@ export const ingress = new k8s.networking.v1.Ingress(name, {
             },
         }],
         tls: [{
-            hosts: ["new.jpgray.ca"],
+            hosts: [url],
             secretName: `${name}-tls`,
         }]
     },

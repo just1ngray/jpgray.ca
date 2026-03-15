@@ -3,6 +3,15 @@ import * as k8s from "@pulumi/kubernetes";
 import { cert_manager } from "./cert-manager";
 
 
+export function getDomain(sub: string): string {
+    if (sub.length === 0) {
+        return "jpgray.ca";
+    }
+    else {
+        return `${sub}.jpgray.ca`;
+    }
+}
+
 /**
  * Ref. https://cert-manager.io/docs/configuration/acme/
  */
