@@ -23,6 +23,8 @@ All traffic should route from the domain to the VPS. Created the following recor
 
 ### Host
 
+#### k3s
+
 Install `k3s` and its requirements.
 
 ```shell
@@ -53,6 +55,8 @@ tls-san:
 
 ... and then run `systemctl restart k3s.service`.
 
+#### fail2ban
+
 Install `fail2ban` (auto-generates iptables rules to prevent connections from IPs that have recently failed SSH auth).
 
 ```shell
@@ -66,6 +70,12 @@ To manage `fail2ban` you can use `sudo fail2ban-client` commands. Also `sudo sys
 sudo fail2ban-client status [jailname]
 sudo fail2ban-client banned
 ```
+
+#### Swap
+
+Follow this excellent DigitalOcean guide on setting up a persistent swap file and swappiness.
+
+[How To Add Swap Space on Ubuntu](https://www.digitalocean.com/community/tutorials/how-to-add-swap-space-on-ubuntu-20-04)
 
 ## Kubectl remotely
 
@@ -111,6 +121,8 @@ Pulumi uses the same access as `kubectl`. Configure kubectl appropriately (as me
 
 ### Updating
 
-pulumi up
+The one magic command to update and synchronize the cluster with the current infrastructure as code state.
 
-then what?
+```shell
+pulumi up
+```
