@@ -1,0 +1,9 @@
+{
+  "terminal": {
+    "env": {
+      // convienience environment variable that works on my laptop so there's no way
+      // that I'll accidentally work against other clusters
+      "KUBECONFIG": "/home/justin/.kube/config:/home/justin/.kube/jpgray",
+    }
+  }
+}
