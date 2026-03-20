@@ -2,6 +2,7 @@ import * as k8s from "@pulumi/kubernetes";
 
 import { ns } from "./namespace";
 import { victoriaLogsChart } from "./victoria-logs";
+import { victoriaMetricsChart } from "./victoria-metrics";
 import { getDomain, cluster_issuer } from "../../cluster";
 
 
@@ -43,6 +44,12 @@ export const grafanaChart = new k8s.helm.v3.Release("grafana", {
                         type: "victoriametrics-logs-datasource",
                         url: victoriaLogsChart.name.apply(releaseName => `http://${releaseName}-victoria-logs-single-server:9428`),
                         isDefault: true,
+                    },
+                    {
+                        name: "VictoriaMetrics",
+                        type: "prometheus",
+                        url: victoriaMetricsChart.name.apply(releaseName => `http://${releaseName}-victoria-metrics-single-server:8428`),
+                        isDefault: false,
                     },
                 ],
             }
