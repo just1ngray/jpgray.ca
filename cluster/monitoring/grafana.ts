@@ -15,6 +15,7 @@ import { getDomain, cluster_issuer } from "../../cluster";
  */
 export const grafanaChart = new k8s.helm.v3.Release("grafana", {
     chart: "grafana",
+    version: "11.3.3",
     repositoryOpts: { repo: "https://grafana-community.github.io/helm-charts" },
     namespace: ns.metadata.name,
     values: {

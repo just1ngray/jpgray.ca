@@ -16,7 +16,7 @@ export const deployment = new k8s.apps.v1.Deployment("whoami", {
             spec: {
                 containers: [{
                     name: "whoami",
-                    image: "traefik/whoami",
+                    image: "traefik/whoami:v1.11.0",
                     ports: [{ containerPort: 80 }],
                 }],
             },

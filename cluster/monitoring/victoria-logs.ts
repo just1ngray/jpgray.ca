@@ -5,6 +5,7 @@ import { ns } from "./namespace";
 
 export const victoriaLogsChart = new k8s.helm.v3.Release("victoria-logs", {
     chart: "victoria-logs-single",
+    version: "0.11.30",
     repositoryOpts: { repo: "https://victoriametrics.github.io/helm-charts/" },
     namespace: ns.metadata.name,
     values: {
@@ -22,6 +23,7 @@ export const victoriaLogsChart = new k8s.helm.v3.Release("victoria-logs", {
  */
 export const victoriaLogsCollectorChart = new k8s.helm.v3.Release("victoria-logs-collector", {
     chart: "victoria-logs-collector",
+    version: "0.2.13",
     repositoryOpts: { repo: "https://victoriametrics.github.io/helm-charts/" },
     namespace: ns.metadata.name,
     values: {
