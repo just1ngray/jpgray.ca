@@ -1,5 +1,0 @@
-helmfiles:
-  - "*/helmfile.yaml"
-
-commonLabels:
-  managed-by: helmfile

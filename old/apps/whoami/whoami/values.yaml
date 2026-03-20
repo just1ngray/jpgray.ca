@@ -1,5 +1,0 @@
-name: whoami
-host: whoami.jpgray.ca
-image:
-  repository: traefik/whoami
-  tag: v1.11

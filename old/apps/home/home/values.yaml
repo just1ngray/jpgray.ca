@@ -1,6 +1,0 @@
-name: home
-host: jpgray.ca
-image:
-  tag: 1.29.4-alpine-slim
-html:
-  index: <p>Default page. Hello world!</p>

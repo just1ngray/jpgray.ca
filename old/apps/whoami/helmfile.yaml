@@ -1,4 +1,0 @@
-releases:
-  - name: whoami
-    namespace: whoami
-    chart: ./whoami
