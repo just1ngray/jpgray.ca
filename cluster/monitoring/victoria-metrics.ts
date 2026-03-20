@@ -39,6 +39,11 @@ export const victoriaMetricsChart = new k8s.helm.v3.Release("victoria-metrics", 
             },
             scrape: {
                 enabled: true,
+                config: {
+                    global: {
+                        scrape_interval: "30s",
+                    },
+                },
             },
         },
     },
