@@ -10,5 +10,21 @@ export const cert_manager = new k8s.helm.v4.Chart("cert-manager", {
     namespace: ns.metadata.name,
     values: {
         crds: { enabled: true },
+        podAnnotations: {
+            "prometheus.io/scrape": "true",
+            "prometheus.io/port": "9402",
+        },
+        webhook: {
+            podAnnotations: {
+                "prometheus.io/scrape": "true",
+                "prometheus.io/port": "9402",
+            },
+        },
+        cainjector: {
+            podAnnotations: {
+                "prometheus.io/scrape": "true",
+                "prometheus.io/port": "9402",
+            },
+        },
     },
 }, { dependsOn: ns });

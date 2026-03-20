@@ -6,6 +6,9 @@ import { victoriaMetricsChart } from "./victoria-metrics";
 import { getDomain, cluster_issuer } from "../../cluster";
 
 
+const VICTORIA_DATASOUCE_NAME_METRICS = "VictoriaMetrics";
+const VICTORIA_DATASOUCE_NAME_LOGS = "VictoriaLogs";
+
 /**
  * Deploy Grafana configured to use monitoring data sources.
  *
@@ -41,19 +44,51 @@ export const grafanaChart = new k8s.helm.v3.Release("grafana", {
                 apiVersion: 1,
                 datasources: [
                     {
-                        name: "VictoriaLogs",
+                        name: VICTORIA_DATASOUCE_NAME_LOGS,
                         type: "victoriametrics-logs-datasource",
                         url: victoriaLogsChart.name.apply(releaseName => `http://${releaseName}-victoria-logs-single-server:9428`),
                         isDefault: true,
                     },
                     {
-                        name: "VictoriaMetrics",
+                        name: VICTORIA_DATASOUCE_NAME_METRICS,
                         type: "prometheus",
                         url: victoriaMetricsChart.name.apply(releaseName => `http://${releaseName}-victoria-metrics-single-server:8428`),
                         isDefault: false,
                     },
                 ],
             }
-        }
+        },
+
+        // import certain dashboards when provisioning grafana
+        // 1. Make a dashboard provider. This is basically a folder where we will put pre-provisioned dashboards into
+        dashboardProviders: {
+            "dashboardproviders.yaml": {
+                apiVersion: 1,
+                providers: [{
+                    name: "default",
+                    orgId: 1,
+                    folder: "",
+                    type: "file",
+                    disableDeletion: false,
+                    options: { path: "/var/lib/grafana/dashboards/default" },
+                }],
+            },
+        },
+        // 2. Add dashboards to the folder we made in (1). Note, we could just import through the Grafana UI also!
+        dashboards: {
+            default: {
+                "cert-manager": {
+                    gnetId: 20340,
+                    revision: 1,
+                    datasource: [
+                        {
+                            name: "DS_PROMETHEUS",
+                            value: VICTORIA_DATASOUCE_NAME_METRICS,
+                        },
+                    ],
+                },
+            },
+        },
+
     },
 });
