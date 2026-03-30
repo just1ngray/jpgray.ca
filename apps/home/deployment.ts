@@ -3,7 +3,7 @@ import * as k8s from "@pulumi/kubernetes";
 import { ns } from "./namespace";
 
 
-export const name = "home-static";
+export const name = "home";
 export const labels = {
     app: name,
 };
