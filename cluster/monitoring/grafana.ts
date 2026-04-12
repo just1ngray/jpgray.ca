@@ -87,6 +87,16 @@ export const grafanaChart = new k8s.helm.v3.Release("grafana", {
                         },
                     ],
                 },
+                "traefik": {
+                    gnetId: 17347,
+                    revision: 9,
+                    datasource: [
+                        {
+                            name: "DS_PROMETHEUS",
+                            value: VICTORIA_DATASOUCE_NAME_METRICS,
+                        },
+                    ],
+                },
             },
         },
 
