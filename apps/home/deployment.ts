@@ -20,7 +20,7 @@ export const deployment = new k8s.apps.v1.Deployment(name, {
             spec: {
                 containers: [{
                     name: "website",
-                    image: "ghcr.io/just1ngray/website:e3bc3de216e51e0bb07c30ee136a36d37d375c3c",
+                    image: "ghcr.io/just1ngray/website:de10e3fa2d7e53954989bcd7b254debebafdeef1",
                 }],
             }
         }
