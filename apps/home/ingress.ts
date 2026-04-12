@@ -1,12 +1,14 @@
 import * as k8s from "@pulumi/kubernetes";
+import * as pulumi from "@pulumi/pulumi";
 
 import { ns } from "./namespace";
 import { name } from "./deployment";
 import { service } from "./service";
-import { getDomain, cluster_issuer } from "../../cluster";
+import { getDomain, cluster_issuer, middlewareWwwDrop } from "../../cluster";
 
 
 const url = getDomain("");
+const wwwUrl = `www.${url}`;
 
 export const ingress = new k8s.networking.v1.Ingress(name, {
     metadata: {
@@ -15,11 +17,12 @@ export const ingress = new k8s.networking.v1.Ingress(name, {
         annotations: {
             "kubernetes.io/ingress.class": "traefik",
             "cert-manager.io/cluster-issuer": cluster_issuer.metadata.name,
+            "traefik.ingress.kubernetes.io/router.middlewares": pulumi.interpolate`${middlewareWwwDrop.metadata.namespace}-${middlewareWwwDrop.metadata.name}@kubernetescrd`,
         },
     },
     spec: {
-        rules: [{
-            host: url,
+        rules: [url, wwwUrl].map(host => ({
+            host: host,
             http: {
                 paths: [{
                     path: "/",
@@ -29,9 +32,9 @@ export const ingress = new k8s.networking.v1.Ingress(name, {
                     },
                 }],
             },
-        }],
+        })),
         tls: [{
-            hosts: [url],
+            hosts: [url, wwwUrl],
             secretName: `${name}-tls`,
         }]
     },
