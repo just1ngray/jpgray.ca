@@ -10,7 +10,7 @@ export const labels = {
 
 const volumeName = "database";
 
-export const deployment = new k8s.apps.v1.Deployment(name, {
+export const statefulset = new k8s.apps.v1.StatefulSet(name, {
     metadata: {
         name: name,
         namespace: ns.metadata.name,

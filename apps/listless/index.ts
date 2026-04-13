@@ -1,6 +1,6 @@
 import { ns, name } from "./namespace";
 import { pvc } from "./pvc";
-import { deployment } from "./deployment";
+import { statefulset } from "./statefulset";
 import { service } from "./service";
 import { ingress } from "./ingress";
 
@@ -9,7 +9,7 @@ export const listless = {
     name,
     ns,
     pvc,
-    deployment,
+    statefulset,
     service,
     ingress,
 };

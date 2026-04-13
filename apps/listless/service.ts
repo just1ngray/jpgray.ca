@@ -1,7 +1,7 @@
 import * as k8s from "@pulumi/kubernetes";
 
 import { ns, name } from "./namespace";
-import { deployment, labels } from "./deployment";
+import { statefulset, labels } from "./statefulset";
 
 
 export const service = new k8s.core.v1.Service(name, {
@@ -13,4 +13,4 @@ export const service = new k8s.core.v1.Service(name, {
         selector: labels,
         ports: [{ port: 80, targetPort: 3000 }],
     },
-}, { dependsOn: deployment });
+}, { dependsOn: statefulset });
