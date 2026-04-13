@@ -29,7 +29,7 @@ export const deployment = new k8s.apps.v1.Deployment(name, {
                 }],
                 containers: [{
                     name: "listless",
-                    image: "ghcr.io/just1ngray/listless:853cf22872980a150bc2b2240362520149561f62",
+                    image: "ghcr.io/just1ngray/listless:c9a1e249dd67f9c42c1f6174b70ff3ee73233b9a",
                     volumeMounts: [{
                         name: volumeName,
                         mountPath: "/listless/db",
