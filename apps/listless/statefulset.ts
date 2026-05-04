@@ -29,7 +29,7 @@ export const statefulset = new k8s.apps.v1.StatefulSet(name, {
                 }],
                 containers: [{
                     name: "listless",
-                    image: "ghcr.io/just1ngray/listless:7e601c90ec7d9891422343187b0b88fdced54e25",
+                    image: "ghcr.io/just1ngray/listless:469e166e210279fb96d2495b6d67de8f9808b2af",
                     volumeMounts: [{
                         name: volumeName,
                         mountPath: "/listless/db",
